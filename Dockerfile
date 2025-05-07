@@ -1,12 +1,28 @@
-# Step 1: Build the JAR
-FROM maven:3.8.5-openjdk-17 AS build
-WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
+# Use an official JDK image
+FROM eclipse-temurin:17-jdk
 
-# Step 2: Run the JAR
-FROM amazoncorretto:17-alpine
+# Set working directory
 WORKDIR /app
-COPY --from=build /app/target/portifolio_backend-0.0.1-SNAPSHOT.jar app.jar
+
+# Copy Maven wrapper and pom.xml
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
+
+# Download dependencies (cached)
+RUN ./mvnw dependency:go-offline
+
+# Copy the rest of the app
+COPY src ./src
+
+# Build the project
+RUN ./mvnw clean package -DskipTests
+
+# Expose port
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Set default profile to prod (can override if needed)
+ENV SPRING_PROFILES_ACTIVE=prod
+
+# Run the jar
+CMD ["java", "-jar", "target/your-app-name-0.0.1-SNAPSHOT.jar"]
