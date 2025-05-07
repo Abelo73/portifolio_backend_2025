@@ -1,0 +1,28 @@
+#services:
+#  - type: web
+#    name: portfolio-backend
+#    env: docker
+#    plan: free
+#    autoDeploy: true
+#    branch: main
+#
+#    # This matches your Dockerfile
+#    dockerfilePath: ./Dockerfile
+#
+#    envVars:
+#      - key: SPRING_DATASOURCE_URL
+#        value: jdbc:postgresql://dpg-d0d0ntemcj7s73b2msjg-a.oregon-postgres.render.com/portfolio_zrpm
+#      - key: SPRING_DATASOURCE_USERNAME
+#        value: portfolio_zrpm_user
+#      - key: SPRING_DATASOURCE_PASSWORD
+#        value: rErzkDKCOFxQYwKaWtGMmsAJwPzhKcDm
+#      - key: SPRING_PROFILES_ACTIVE
+#        value: prod
+#      - key: CLOUDINARY_CLOUD_NAME
+#        value: dntxvo2hh
+#      - key: CLOUDINARY_API_KEY
+#        value: 257679853957169
+#      - key: CLOUDINARY_API_SECRET
+#        value: Kf6p3PUFXm_KsM-g_Reyul1TO1c
+#      - key: FRONTEND_URL
+#        value: https://your-frontend-url.com
